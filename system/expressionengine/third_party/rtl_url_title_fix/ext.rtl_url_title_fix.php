@@ -26,7 +26,7 @@
 	*/
 
 class Rtl_url_title_fix_ext {
-	
+
 	var $name			= 'RTL Url Title Fix';
 	var $version 			= '1.0';
 	var $description	= 'This Extintion converts the RTL Languages Characters to Latin for Your entry URL title';
@@ -40,12 +40,68 @@ class Rtl_url_title_fix_ext {
 	{
 		$this->EE =& get_instance();
 	}
-	
+
 	function RTL_characters()
 	{
 		$characters = array(
+		// Hebrew
+			// Vowels
+		'1456' => '',
+		'1457' => 'e',
+		'1458' => 'a',
+		'1459' => 'a',
+		'1460' => 'i',
+		'1461' => 'e',
+		'1462' => 'e',
+		'1463' => 'a',
+		'1464' => 'a',
+		'1465' => 'o',
+		'1466' => 'o',
+		'1467' => 'u',
+		'1468' => '',
+		'1469' => '',
+		'1470' => '',
+		'1471' => '',
+		'1472' => '',
+		'1473' => 'h',
+		'1474' => '',
+		'1475' => '',
+		'1476' => '',
+		'1477' => '',
+		'1478' => '',
+		'1479' => 'a',
 
-		
+			// Letters
+		'1488' => '',
+		'1489' => 'b',
+		'1490' => 'g',
+		'1491' => 'd',
+		'1492' => 'h',
+		'1493' => 'v',
+		'1494' => 'z',
+		'1495' => 'ch',
+		'1496' => 't',
+		'1497' => 'y',
+		'1498' => 'ch',
+		'1499' => 'ch',
+		'1500' => 'l',
+		'1501' => 'm',
+		'1502' => 'm',
+		'1503' => 'n',
+		'1504' => 'n',
+		'1505' => 's',
+		'1506' => '',
+		'1507' => 'p',
+		'1508' => 'p',
+		'1509' => 'tz',
+		'1510' => 'tz',
+		'1511' => 'k',
+		'1512' => 'r',
+		'1513' => 's',
+		'1514' => 't',
+
+
+		// Arabic
 		'1569' => '\'a',
 		'1575' => 'a',
 		'1570' => 'a',
@@ -90,13 +146,13 @@ class Rtl_url_title_fix_ext {
 		'1614' => 'a',
 		'1616' => 'i'
 		);
-		
+
 		return $characters;
 	}
 
 
 	function activate_extension() {
-	
+
 	      $data = array(
 	        'class'      => __CLASS__,
 	        'method'    => "RTL_characters",
@@ -106,18 +162,18 @@ class Rtl_url_title_fix_ext {
 	        'version'    => $this->version,
 	        'enabled'    => "y"
 	      );
-	
+
 	      // insert ext in database
 	      $this->EE->db->insert('exp_extensions', $data);
 	  }
-	
-	
+
+
 	  function disable_extension() {
-	
+
 	      $this->EE->db->where('class', __CLASS__);
 	      $this->EE->db->delete('exp_extensions');
-	  } 
-	  
+	  }
+
 	 /**
 	 * Update Extension
 	 *
@@ -131,12 +187,12 @@ class Rtl_url_title_fix_ext {
 		{
 			return FALSE;
 		}
-		
+
 		if ($current < $this->version)
 		{
 			// Update to version 1.0
 		}
-		
+
 		$this->EE->db->where('class', __CLASS__);
 		$this->EE->db->update('extensions', array('version' => $this->version));
 	}
